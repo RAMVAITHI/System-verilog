@@ -1,0 +1,42 @@
+module func_pass_by_ref;
+  
+  int result,a,b;
+  initial
+  begin
+    $display("\t ----output for function passing by reference -----");
+   
+    a=5;
+    b=6;
+    $display("\tBefore calling function -> a= %0d ,b = %0d",a,b);
+    $display("\tcalling the functions");
+   
+    result=sum_without_ref(a,b);
+   
+    $display("\n\t@ %0t ns, value of sum is %0d",$time,result);
+    $display("\tafter calling function without ref -> addend = %0d, augend =%0d",a,b);
+    result=sum_with_ref(a,b);
+    $display("\tafter calling function with ref -> addend = %0d, augend =%0d",a,b);
+  end
+ 
+  function automatic int sum_with_ref(ref int var1,var2);
+    int temp;
+    $display("\n\tentered into with ref function");
+    temp=var1;
+    var1=var2;
+    var2=temp;
+    $display("\tswapped variables by using ref ");
+    return var1+var2;
+  endfunction : sum_with_ref
+
+  function int sum_without_ref(input int var1,var2);
+    int temp;
+    $display("\n\tentered into without ref function");
+    temp=var1;
+    var1=var2;
+    var2=temp;
+    $display("\tswapped variables by without using ref ");
+    return var1+var2;
+  endfunction : sum_without_ref
+endmodule : func_pass_by_ref
+
+           
