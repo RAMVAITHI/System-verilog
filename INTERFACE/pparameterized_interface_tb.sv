@@ -1,5 +1,7 @@
   module tb;
        uc inf();
+   // uc #4 inf(); // to change parameter value
+   // defparam inf.N=4; // to change parameter value  any 1 method can be used
     ctr ins (.inf(inf));
      initial begin
      $display("\n // Parameterised interface example");
